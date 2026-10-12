@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10172d">
+<title>Pankaj Bhardwaj | Stock Market Education</title>
+<meta name="description" content="Educational resources about NIFTY, BANKNIFTY and the stock market.">
+<style>
+*{box-sizing:border-box}
+:root{
+  --blue:#1765f5;
+  --purple:#4930d8;
+  --ink:#151b2c;
+  --muted:#7a8293;
+  --line:#e5e9f1;
+  --bg:#f3f8f8;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+button,a{-webkit-tap-highlight-color:transparent}
+.ticker{
+  position:sticky;top:0;z-index:5;
+  display:flex;gap:12px;overflow:hidden;
+  white-space:nowrap;padding:12px 16px;
+  background:#10172d;color:#fff;
+  font-size:12px;font-weight:700;
+}
+.ticker span{
+  padding:6px 10px;border:1px solid #303951;
+  border-radius:8px;background:#19233b;
+}
+.green{color:#47d59a}
+.page{
+  max-width:650px;margin:auto;
+  padding:30px 20px 125px;
+}
+.online{
+  display:table;margin:0 auto 28px;
+  padding:10px 22px;border-radius:30px;
+  background:#f0f3ff;border:1px solid #dce4ff;
+  color:#38558e;font-size:14px;font-weight:700;
+}
+.profile-wrap{position:relative;width:128px;margin:auto}
+.profile{
+  width:128px;height:128px;border-radius:50%;
+  border:4px solid #5363ef;
+  padding:4px;background:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:50px;
+  box-shadow:0 5px 18px #3049ad25;
+}
+.profile img{
+  width:100%;height:100%;object-fit:cover;
+  border-radius:50%;
+}
+.verified{
+  position:absolute;right:3px;bottom:2px;
+  background:#1765f5;color:#fff;border:3px solid white;
+  border-radius:50%;width:33px;height:33px;
+  display:grid;place-items:center;font-size:17px;
+}
+h1{
+  text-align:center;font-size:25px;
+  margin:13px 0 7px;font-weight:800;
+}
+.tagline{
+  text-align:center;color:#244b96;
+  font-size:14px;font-weight:700;margin:8px 0;
+}
+.rating{
+  display:table;margin:10px auto 20px;
+  padding:6px 12px;border:1px solid #f5e4b5;
+  background:#fff9e9;border-radius:25px;
+  font-size:12px;color:#283247;
+}
+.rating .stars{color:#f2ae25;font-size:16px}
+.join{
+  display:flex;justify-content:center;align-items:center;
+  gap:10px;width:100%;padding:19px 12px;
+  background:linear-gradient(105deg,#1265ff,#4b2dd7);
+  color:#fff;text-decoration:none;text-align:center;
+  font-size:16px;font-weight:800;border-radius:18px;
+  box-shadow:0 6px 16px #3656e34a;
+  border:1px solid #8296ff;
+}
+.join:active{transform:scale(.99)}
+.stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;margin:24px 0;
+}
+.stat{
+  min-width:0;text-align:center;padding:17px 5px;
+  background:#fff;border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 3px 10px #18284a08;
+}
+.stat strong{
+  display:block;color:#2456b9;font-size:19px;
+  margin-bottom:7px;
+}
+.stat:nth-child(3) strong{color:#26926b}
+.stat span{font-size:12px;color:#778093}
+h2{
+  font-size:18px;line-height:1.45;
+  text-align:center;margin:25px 0 8px;
+}
+.blue{color:#1765f5}
+.description{
+  text-align:center;color:var(--muted);
+  font-size:13px;line-height:1.65;
+}
+.limited{
+  margin:22px 0 18px;padding:13px 10px;
+  text-align:center;border:1px solid #f2dfb4;
+  background:#fff8e9;border-radius:30px;
+  color:#87502b;font-size:13px;font-weight:700;
+}
+.actions{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;margin:18px 0 24px;
+}
+.secondary{
+  border:1px solid var(--line);background:#fff;
+  border-radius:13px;padding:14px 5px;
+  text-align:center;color:#414b61;
+  text-decoration:none;font-weight:700;font-size:13px;
+  cursor:pointer;
+}
+.features{display:grid;gap:11px}
+.feature{
+  display:flex;align-items:center;gap:13px;
+  padding:16px 13px;background:#fff;
+  border:1px solid var(--line);border-radius:15px;
+  box-shadow:0 3px 10px #18284a06;
+}
+.feature-icon{
+  width:40px;height:40px;flex-shrink:0;
+  display:grid;place-items:center;
+  background:#eef3ff;border-radius:11px;font-size:21px;
+}
+.feature h3{font-size:14px;margin:0 0 5px}
+.feature p{
+  margin:0;color:var(--muted);
+  font-size:12px;line-height:1.5;
+}
+.trust{
+  text-align:center;font-size:12px;color:#526078;
+  margin:24px 0;
+}
+.final-join{
+  display:block;text-align:center;text-decoration:none;
+  padding:17px 10px;border-radius:17px;
+  color:#fff;background:#11182e;
+  box-shadow:0 5px 12px #11182e20;font-weight:800;
+}
+.free-note{
+  text-align:center;color:#506bb0;
+  font-size:12px;margin:10px 0 25px;
+}
+.activity{
+  display:flex;align-items:center;gap:10px;
+  margin:20px 0;padding:12px;
+  background:#ffffffed;border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 3px 14px #18284a09;
+}
+.activity-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:#edf3ff;display:grid;place-items:center;
+}
+.activity strong{font-size:12px}
+.activity p{font-size:11px;color:var(--muted);margin:4px 0 0}
+.disclaimer{
+  border-top:1px solid var(--line);
+  margin-top:24px;padding:22px 0 0;
+  text-align:center;color:#8b97aa;
+  font-size:12px;line-height:1.8;
+}
+.disclaimer a{color:#8b97aa;text-decoration:underline}
+.bottom-bar{
+  position:fixed;z-index:10;bottom:0;left:0;right:0;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:#ffffffed;backdrop-filter:blur(12px);
+  border-top:1px solid #e3e8f0;
+}
+.bottom-inner{
+  max-width:620px;margin:auto;
+  display:flex;align-items:center;gap:10px;
+}
+.mini-profile{
+  width:36px;height:36px;border-radius:50%;
+  background:#e6edff;display:grid;place-items:center;
+  flex-shrink:0;
+}
+.bottom-text{flex:1;min-width:0}
+.bottom-text strong{display:block;font-size:12px}
+.bottom-text span{display:block;color:#268a68;font-size:10px;margin-top:3px}
+.bottom-join{
+  background:linear-gradient(100deg,#1765f5,#4b2dd7);
+  color:#fff;text-decoration:none;border-radius:13px;
+  padding:13px 14px;font-size:12px;font-weight:800;
+  white-space:nowrap;
+}
+@media(min-width:600px){
+  .page{padding-top:38px}
+  h1{font-size:30px}
+  .profile,.profile-wrap{width:145px;height:145px}
+  .profile-wrap{height:145px}
+  .profile{font-size:55px}
+  .join{font-size:19px;padding:22px}
+  .stat strong{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <span>NIFTY 50: <b>Market Education</b></span>
+  <span>BANK NIFTY: <b>Market Updates</b></span>
+  <span>SENSEX: <b>Market Learning</b></span>
+</div>
+
+<main class="page">
+  <div class="online">🟢 Traders &amp; Learners Welcome</div>
+
+  <div class="profile-wrap">
+    <div class="profile" id="profile">
+      <span>📈</span>
+    </div>
+    <div class="verified" title="Profile badge">✓</div>
+  </div>
+
+  <h1>PANKAJ BHARDWAJ</h1>
+  <p class="tagline">🏆 Stock Market Education Channel</p>
+
+  <div class="rating">
+    <span class="stars">★★★★★</span>
+    &nbsp; Market Learning Community
+  </div>
+
+  <a class="join telegram-link" href="https://t.me/">
+    ⚝ &nbsp; Join Free Telegram Channel &nbsp; →
+  </a>
+
+  <section class="stats">
+    <div class="stat">
+      <strong>Community</strong>
+      <span>Members</span>
+    </div>
+    <div class="stat">
+      <strong>5+ Years</strong>
+      <span>Experience</span>
+    </div>
+    <div class="stat">
+      <strong>Risk First</strong>
+      <span>Education</span>
+    </div>
+  </section>
+
+  <h2>
+    Get <span class="blue">FREE learning resources</span>
+    for NIFTY, BANKNIFTY &amp; SENSEX
+  </h2>
+
+  <p class="description">
+    Explore market concepts, analysis and risk management.
+  </p>
+
+  <div class="limited">
+    📈 Learn about markets — at your own pace
+  </div>
+
+  <a class="join telegram-link" href="https://t.me/">
+    ➜ &nbsp; Join Free Telegram Channel &nbsp; →
+  </a>
+
+  <div class="actions">
+    <a class="secondary" href="#levels">📊 Preview Levels</a>
+    <button class="secondary" id="shareButton" type="button">
+      ♧ Share Channel
+    </button>
+  </div>
+
+  <section class="features" id="levels">
+    <article class="feature">
+      <div class="feature-icon">📊</div>
+      <div>
+        <h3>Daily Nifty &amp; BankNifty Learning</h3>
+        <p>Understand support, resistance and breakout concepts before making decisions.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="feature-icon">🎓</div>
+      <div>
+        <h3>No Guaranteed Profits — Learn First</h3>
+        <p>Explore price action, candlestick psychology and risk management.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="feature-icon">⏳</div>
+      <div>
+        <h3>Market Experience &amp; Learning</h3>
+        <p>Study different market conditions, trends and price movements.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="feature-icon">👥</div>
+      <div>
+        <h3>A Community of Market Learners</h3>
+        <p>Learn market terminology and build your own research skills.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="trust">
+    🛡️ <b>Education First</b> · Free to Explore · Risk Awareness
+  </div>
+
+  <a class="final-join telegram-link" href="https://t.me/">
+    Join Now — Start Learning &nbsp; ›
+  </a>
+
+  <p class="free-note">📚 Educational resources for market learners</p>
+
+  <div class="activity">
+    <div class="activity-icon">👤</div>
+    <div>
+      <strong>Welcome to the learning community</strong>
+      <p>Explore educational resources at your own pace.</p>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <a href="#risk-disclaimer">Educational Purpose &amp; SEBI Risk Disclaimer</a>
+    <div id="risk-disclaimer">
+      This page is for educational and informational purposes only.
+      It is not investment advice or a recommendation to buy or sell securities.
+      No returns or accuracy are guaranteed.
+      <br>
+      Securities market investments are subject to market risks.
+      Please read all relevant documents carefully and consult a qualified
+      financial professional if needed.
+    </div>
+  </div>
+</main>
+
+<div class="bottom-bar">
+  <div class="bottom-inner">
+    <div class="mini-profile">📈</div>
+    <div class="bottom-text">
+      <strong>Pankaj Bhardwaj</strong>
+      <span>● Market Education</span>
+    </div>
+    <a class="bottom-join telegram-link" href="https://t.me/">
+      Join Free Channel →
+    </a>
+  </div>
+</div>
+
+<script>
+const TELEGRAM_URL = "https://t.me/";
+
+document.querySelectorAll(".telegram-link").forEach(link => {
+  link.href = TELEGRAM_URL;
+});
+
+document.getElementById("shareButton").addEventListener("click", async () => {
+  const shareData = {
+    title: document.title,
+    text: "Explore stock market educational resources.",
+    url: window.location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Page link copied!");
+    } else {
+      prompt("Copy this page link:", window.location.href);
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      alert("Please copy the page link from your browser.");
+    }
+  }
+});
+</script>
+
+</body>
+</html>
